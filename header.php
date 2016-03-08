@@ -50,6 +50,7 @@ $(document).ready(function() {
 			  <li><a href="country.php">&nbsp;Manage Country</a></li>
 			  <li><a href="state.php">&nbsp;Manage State</a></li>
 			  <li><a href="city.php">&nbsp;Manage City</a></li>
+			  <li><a href="d_city.php">&nbsp;Dynamic City</a></li>
 			  <li><a href="#">&nbsp;Manage Results</a></li>
 		      </ul>
         </li>

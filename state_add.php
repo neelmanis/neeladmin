@@ -7,13 +7,22 @@ include_once('common_tools.php');
 if($savedetails=='saveapp')
 {
 $country=trim($_POST['country']);
-$state=trim(strtoupper($_POST['state']));
+$state=trim($_POST['state']);
 $status=trim($_POST['status']);
+
+$sqlx="SELECT state from master_state  WHERE state='$state'";
+$mysqlresult = $mysqldblink->query($sqlx);
+$mysqlrow = $mysqlresult->fetch_array();
+$getState=$mysqlrow['state'];
 
 if(empty($country) && $country==0)
 {$signup_error= "Please Choose Country";}
 elseif(empty($state))
 {$signup_error="Please Enter State";}
+elseif(preg_match('/^[0-9 .\-]+$/i', $state)) 
+{$signup_error= 'State Name is not valid';}
+elseif($getState == $state)
+{$signup_error="State Name Already Exist";}
 else{
 $sqlx="INSERT INTO `master_state`(`id`, `post_date`, `country_id`, `state`, `status`) VALUES ('',NOW(),'$country','$state','$status')"; 
 $mysqlresults = $mysqldblink->query($sqlx);
